@@ -17,6 +17,14 @@ var lodash_1 = require("lodash");
 window.$ = jQuery;
 window.jQuery = jQuery;
 var virtualDom;
+exports.createElement = function (type, props, children) {
+    if (children === void 0) { children = []; }
+    return {
+        type: type,
+        props: props,
+        children: children
+    };
+};
 var createVirtualDom = function (myComponent) {
     var node = myComponent();
     if (node.children[0] && node.children instanceof Function) {
@@ -47,6 +55,8 @@ var renderComponentTreeToDom = function (newDomElement) {
 var renderComponentToDom = function (newComponent, parentNode) {
     console.log(newComponent);
     var node = document.createElement(newComponent.type);
+    if (newComponent.props) {
+    }
     newComponent.children.forEach(function (child) {
         if (lodash_1.isString(child)) {
             node.appendChild(document.createTextNode(child));

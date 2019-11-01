@@ -16,6 +16,14 @@ window.jQuery = jQuery;
 
 let virtualDom: any;
 
+export const createElement = (type: string, props: any, children: any = []) => {
+  return {
+    type,
+    props,
+    children
+  };
+};
+
 const createVirtualDom = (myComponent: () => Component) => {
   const node = myComponent();
   if (node.children[0] && node.children instanceof Function) {
@@ -58,6 +66,8 @@ const renderComponentToDom = (
 ) => {
   console.log(newComponent);
   const node = document.createElement(newComponent.type);
+  if (newComponent.props) {
+  }
 
   newComponent.children.forEach((child: any) => {
     if (isString(child)) {
