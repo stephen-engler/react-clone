@@ -1,12 +1,24 @@
 import { Component } from "./Types";
 
+declare namespace JSX {
+  export interface IntrinsicElements {
+    [elemName: string]: any;
+    props: any;
+    children: any;
+  }
+}
+
 export let virtualDom: any;
 
-export const createElement = (type: string, props: any, children: any = []) => {
+export const createElement = (
+  type: string,
+  props: any,
+  children: any
+): JSX.IntrinsicElements => {
   return {
     type,
     props,
-    children
+    children: [children]
   };
 };
 

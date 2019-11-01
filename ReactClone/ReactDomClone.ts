@@ -11,7 +11,7 @@ const findDiff = (prevDom: any, updatedDom: any) => {
   return isEqual(prevDom, updatedDom);
 };
 
-export const render = (app: () => Component) => {
+export const render = (app: any) => {
   const updatedDom = createVirtualDom(app);
   if (!findDiff(updatedDom, virtualDom)) {
     console.log("not equal");

@@ -6,7 +6,7 @@ var Button = function () {
 };
 var HelloWorld = function () { return ReactClone_1.createElement("p", null, ["hello world", Button]); };
 var App = function () {
-    return ReactClone_1.createElement("div", null, "hello!!!!");
+    return <div>blah</div>;
 };
 exports["default"] = App;
-//# sourceMappingURL=components.js.map
+//# sourceMappingURL=components.jsx.map

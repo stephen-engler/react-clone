@@ -12,11 +12,10 @@ var __assign = (this && this.__assign) || function () {
 };
 exports.__esModule = true;
 exports.createElement = function (type, props, children) {
-    if (children === void 0) { children = []; }
     return {
         type: type,
         props: props,
-        children: children
+        children: [children]
     };
 };
 exports.setVirtualDom = function (newVirtualDom) {

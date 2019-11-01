@@ -7,6 +7,13 @@ declare global {
     $: JQueryStatic;
     jQuery: JQueryStatic;
   }
+  namespace JSX {
+    export interface IntrinsicElements {
+      [elemName: string]: any;
+      props: any;
+      children: any;
+    }
+  }
 }
 
 window.$ = jQuery;
