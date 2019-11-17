@@ -1,4 +1,4 @@
-import { isEqual, isString } from "lodash";
+import { isEqual, isString, isFunction } from "lodash";
 
 import {
   virtualDom,
@@ -14,7 +14,7 @@ const findDiff = (prevDom: any, updatedDom: any) => {
 export const render = (app: any) => {
   const updatedDom = createVirtualDom(app);
   if (!findDiff(updatedDom, virtualDom)) {
-    console.log("not equal");
+    console.log(updatedDom);
 
     // TODO now we are just redoing the entire dom.
     // we need to  find exactly which elements were changed
@@ -33,9 +33,15 @@ const renderComponentToDom = (
   newComponent: Component,
   parentNode: HTMLElement
 ) => {
-  console.log(newComponent);
   const node = document.createElement(newComponent.type);
+  const { props } = newComponent;
   if (newComponent.props) {
+    Object.keys(props).forEach(key => {
+      if (isFunction(props[key])) {
+        const thisAttribute = mapHandlers[key];
+        node.setAttribute(thisAttribute, props[key]);
+      }
+    });
   }
 
   newComponent.children.forEach((child: any) => {
@@ -48,3 +54,11 @@ const renderComponentToDom = (
 
   parentNode.appendChild(node);
 };
+
+const mapHandlers: handlers = {
+  onClick: "onclick"
+};
+
+interface handlers {
+  [key: string]: any;
+}

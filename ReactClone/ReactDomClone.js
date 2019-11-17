@@ -8,7 +8,7 @@ var findDiff = function (prevDom, updatedDom) {
 exports.render = function (app) {
     var updatedDom = ReactClone_1.createVirtualDom(app);
     if (!findDiff(updatedDom, ReactClone_1.virtualDom)) {
-        console.log("not equal");
+        console.log(updatedDom);
         ReactClone_1.setVirtualDom(updatedDom);
         renderComponentTreeToDom(updatedDom);
     }
@@ -18,7 +18,6 @@ var renderComponentTreeToDom = function (newDomElement) {
     renderComponentToDom(newDomElement, node);
 };
 var renderComponentToDom = function (newComponent, parentNode) {
-    console.log(newComponent);
     var node = document.createElement(newComponent.type);
     if (newComponent.props) {
     }

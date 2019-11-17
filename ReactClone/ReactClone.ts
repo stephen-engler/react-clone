@@ -1,5 +1,7 @@
 import { Component } from "./Types";
 
+import { isString } from "lodash";
+
 declare namespace JSX {
   export interface IntrinsicElements {
     [elemName: string]: any;
@@ -10,15 +12,11 @@ declare namespace JSX {
 
 export let virtualDom: any;
 
-export const createElement = (
-  type: string,
-  props: any,
-  children: any
-): JSX.IntrinsicElements => {
+export const createElement = (type: string, props: any, children: any): any => {
   return {
     type,
-    props,
-    children: [children]
+    props: props,
+    children: [...children]
   };
 };
 
@@ -28,7 +26,8 @@ export const setVirtualDom = (newVirtualDom: any) => {
 
 export const createVirtualDom = (myComponent: () => Component) => {
   const node = myComponent();
-  if (node.children[0] && node.children instanceof Function) {
+  if (isString(node.children[0])) {
+    return node;
   }
 
   const nodeChildren: any = node.children.map((child: any) => {

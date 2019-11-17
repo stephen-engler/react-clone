@@ -11,11 +11,12 @@ var __assign = (this && this.__assign) || function () {
     return __assign.apply(this, arguments);
 };
 exports.__esModule = true;
+var lodash_1 = require("lodash");
 exports.createElement = function (type, props, children) {
     return {
         type: type,
         props: props,
-        children: [children]
+        children: children
     };
 };
 exports.setVirtualDom = function (newVirtualDom) {
@@ -23,7 +24,8 @@ exports.setVirtualDom = function (newVirtualDom) {
 };
 exports.createVirtualDom = function (myComponent) {
     var node = myComponent();
-    if (node.children[0] && node.children instanceof Function) {
+    if (lodash_1.isString(node.children)) {
+        return node;
     }
     var nodeChildren = node.children.map(function (child) {
         if (child instanceof Function) {
