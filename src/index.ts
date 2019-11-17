@@ -1,6 +1,6 @@
 import * as jQuery from "jquery";
 import { render } from "../ReactClone/ReactDomClone";
-import app from "./componentsJSX";
+import app from "./components";
 
 declare global {
   interface Window {

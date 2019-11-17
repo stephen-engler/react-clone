@@ -56,7 +56,8 @@ const renderComponentToDom = (
 };
 
 const mapHandlers: handlers = {
-  onClick: "onclick"
+  onClick: "onclick",
+  onChange: "onchange"
 };
 
 interface handlers {

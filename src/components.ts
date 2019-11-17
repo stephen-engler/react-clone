@@ -4,4 +4,8 @@ const Button = () =>
   createElement("button", { onClick: () => console.log("clicked") }, ["click"]);
 const HelloWorld = () => createElement("p", null, ["hello world", Button]);
 
-const app = () => {};
+const app = () => {
+  return createElement("div", null, [HelloWorld]);
+};
+
+export default app;
